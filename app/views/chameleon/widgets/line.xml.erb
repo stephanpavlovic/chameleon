@@ -4,7 +4,8 @@
     <name><%= @data[:name] || 'Line Chart' %></name>
     <% @data[:items].each do |item| %>
       <data>
-        <% if item.is_a? Hash %>
+        <name><%= item.is_a?(Hash)%></name>
+        <% if item.is_a?(Hash) %>
           <x><%= item[:x] || '' %><x>
           <y><%= item[:y] || '' %><y>
         <% else %>
