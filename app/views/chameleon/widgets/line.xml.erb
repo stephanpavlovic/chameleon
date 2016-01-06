@@ -3,7 +3,19 @@
   <series>
     <name><%= @data[:name] || 'Line Chart' %></name>
     <% @data[:items].each do |item| %>
-      <data><%= item %></data>
+      <data>
+        <% if item.is_a? Hash %>
+          <x><%= item[:x] || '' %><x>
+          <y><%= item[:y] || '' %><y>
+        <% else %>
+          <%= item %>
+        <% end %>
+      </data>
+      <% if @data[:incomplete_from] %>
+        <incomplete_from>
+          <%= @data[:incomplete_from] %>
+        </incomplete_from>
+      <% end %>
     <% end %>
   </series>
   <% if @data[:x_axis]%>
