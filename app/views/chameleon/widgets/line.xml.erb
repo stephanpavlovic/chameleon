@@ -13,15 +13,18 @@
       </data>
     <% end %>
     <% if @data[:incomplete_from] %>
-      <incomplete_from>
-        <%= @data[:incomplete_from] %>
-      </incomplete_from>
+      <incomplete_from><%= @data[:incomplete_from] %></incomplete_from>
     <% end %>
   </series>
   <% if @data[:x_axis]%>
     <x_axis>
-      <% @data[:x_axis].each do |x| %>
-        <labels><%= x %></labels>
+      <% if @data[:x_axis][:type] %>
+        <type><%= @data[:x_axis][:type] %></type>
+      <% end %>
+      <% if @data[:x_axis][:values] %>
+        <% @data[:x_axis][:values].each do |x| %>
+          <labels><%= x %></labels>
+        <% end %>
       <% end %>
     </x_axis>
   <% end %>
