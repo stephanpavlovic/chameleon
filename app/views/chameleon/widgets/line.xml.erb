@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-  <% @data[:items].each do |item| %>
-    <item><%= item %></item>
+  <series>
+    <name><%= @data[:name] || 'Line Chart' %></name>
+    <% @data[:items].each do |item| %>
+      <data><%= item %></data>
+    <% end %>
+  </series>
+  <% if @data[:x_axis]%>
+    <x_axis>
+      <% @data[:x_axis].each do |x| %>
+        <labels><%= x %></labels>
+      <% end %>
+    </x_axis>
   <% end %>
-  <settings>
-    <% @data[:x_axis].each do |x| %>
-      <axisx><%= x %></axisx>
-    <% end %>
-    <% @data[:y_axis].each do |y| %>
-      <axisy><%= y %></axisy>
-    <% end %>
-    <colour><%= @data[:colour] || "ff9900" %></colour>
-  </settings>
 </root>
