@@ -20,7 +20,7 @@ class WidgetsTest < ActionController::TestCase
   test "valid widget and key" do
     get :show, :id => "test", :key => "c6fdeae2af2c327cac35abc2ccacd8619af56821"
     assert_response :ok
-    assert_template "widgets/number_and_secondary"
+    assert_template :number_and_secondary
     assert_equal 1, assigns(:data)[:value]
     assert_equal 2, assigns(:data)[:previous]
   end
@@ -28,7 +28,7 @@ class WidgetsTest < ActionController::TestCase
   test "widget with custom key parameter" do
     get :show, :id => "test2", :token => "c6fdeae2af2c327cac35abc2ccacd8619af56821"
     assert_response :ok
-    assert_template "widgets/number_and_secondary"
+    assert_template :number_and_secondary
     assert_equal 1, assigns(:data)[:value]
     assert_equal 2, assigns(:data)[:previous]
   end
@@ -36,7 +36,7 @@ class WidgetsTest < ActionController::TestCase
   test "widget with custom auth block" do
     get :show, :id => "test3", :token => "987654321"
     assert_response :ok
-    assert_template "widgets/number_and_secondary"
+    assert_template :number_and_secondary
     assert_equal 5, assigns(:data)[:value]
     assert_equal 3, assigns(:data)[:previous]
   end
@@ -290,5 +290,5 @@ xml =<<EOF
 </root>
 EOF
     assert_equal xml, response.body
-  end  
+  end
 end

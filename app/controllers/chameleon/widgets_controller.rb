@@ -5,7 +5,10 @@ class Chameleon::WidgetsController < ApplicationController
 
   def show
     @data = @widget.data.call(@auth)
-    render "#{@widget.type}.xml"
+    respond_to do |format|
+      format.xml { render @widget.type }
+      format.html { render @widget.type, format: :xml } # To be backwards compatible for requests without a format
+    end
   end
 
   protected

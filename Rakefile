@@ -7,8 +7,8 @@ rescue LoadError
 end
 
 require 'rake'
-require "rake/gempackagetask"
-require "rake/rdoctask"
+require "rubygems/package_task"
+require "rdoc/task"
 
 require "rake/testtask"
 Rake::TestTask.new do |t|
@@ -22,7 +22,7 @@ task :default => ["test"]
 spec = Gem::Specification.new do |s|
 
   s.name              = "chameleon"
-  s.version           = "0.2.4"
+  s.version           = "0.2.5"
   s.summary           = "Rails engine to let you easily build Geckoboard widgets"
   s.author            = "Elliott Draper"
   s.email             = "el@kickcode.com"
@@ -38,7 +38,7 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency("rails", "3.2.6")
 end
 
-Rake::GemPackageTask.new(spec) do |pkg|
+Gem::PackageTask.new(spec) do |pkg|
   pkg.gem_spec = spec
 end
 
